@@ -3,7 +3,7 @@ import { YoutubeList } from "./YoutubeList";
 import "./App.css";
 import loadingGif from "./loading3.gif";
 
-const MAX_FILE_SIZE = 20000;
+const MAX_FILE_SIZE = 200000;
 
 function App() {
   const [selectedImages, setSelectedImages] = useState(null);
@@ -171,7 +171,7 @@ function App() {
           }}
         >
           <div>
-            {selectedImages?.length && (
+            {selectedImages?.length !== 0 && (
               <input
                 type="textarea"
                 placeholder="Enter text"

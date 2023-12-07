@@ -4,12 +4,16 @@ const axios = require("axios");
 const cors = require("cors");
 const { google } = require("googleapis");
 
+const path = require("path");
 require("dotenv").config();
+
+const dotenv = require("dotenv");
+const buf = Buffer.from("BASIC=basic");
+const config = dotenv.parse(buf);
 
 const app = express();
 const port = 3000;
 
-// gapi.server.setApiKey("");
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 app.use(cors());
@@ -29,7 +33,6 @@ app.post("/image", async (req, res) => {
       type: "image_url",
       image_url: {
         url: image,
-        detail: "high",
       },
     }));
 
@@ -79,7 +82,7 @@ app.post("/image", async (req, res) => {
 
     const headers2 = {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${openAi}`,
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
     };
 
     // Make a POST request to OpenAI API
@@ -95,14 +98,14 @@ app.post("/image", async (req, res) => {
     // const youtubeResponse = await youtube.search.list({
     //   part: "snippet",
     //   q: youtubeText,
-    //   maxResults: 1,
+    //   maxResults: 5,
     // });
 
     // Combine both responses
     const combinedResponse = {
       aiResponse: response.data,
       youtubeResponse: [],
-      //   youtubeResponse: youtubeResponse.data.items || [],
+      // youtubeResponse: youtubeResponse.data.items || [],
     };
 
     // Send back the response

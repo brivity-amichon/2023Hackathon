@@ -1,0 +1,10 @@
+{
+  "name": "my-app",
+  "main": "backend/src/something.js",
+  "scripts": {
+    "backend": "react-scripts start"
+  },
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  }
+}
