@@ -54,8 +54,6 @@ export const YoutubeList = ({ youtubeVideos }) => {
     },
   };
 
-  console.log("youtubeVideos", youtubeVideos);
-
   return (
     <div style={styles.container}>
       {youtubeVideos && (
