@@ -4,7 +4,7 @@ const axios = require("axios");
 const cors = require("cors");
 const { google } = require("googleapis");
 
-const dotEnv = require("dotenv");
+require("dotenv").config();
 
 const app = express();
 const port = 3000;
@@ -16,7 +16,7 @@ app.use(cors());
 
 const youtube = google.youtube({
   version: "v3",
-  auth: "AIzaSyBZIBLEcc2WpZ8IgJIRbTA7kKR1ncFPUhY",
+  auth: process.env.GOOGLE_API_KEY,
 });
 
 // Route to handle POST request
@@ -56,7 +56,7 @@ app.post("/image", async (req, res) => {
     // API headers
     const headers = {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${dotEnv.OPENAI_API_KEY}`,
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
     };
 
     // Make a POST request to OpenAI API
